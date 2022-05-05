@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PictureOfTheDay</string>
+    <string name="app_name">NASA - Картинка дня</string>
+    <string name="text_search_button">ПОИСК</string>
 </resources>

@@ -7,14 +7,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import ru.gb.pictureoftheday.api.PictureNasaResponse
 import ru.gb.pictureoftheday.domain.NasaRepository
 import java.io.IOException
 
 class MainViewModel(val repositiry: NasaRepository) : ViewModel() {
     private val _loading = MutableStateFlow(false)
     val loadind: Flow<Boolean> = _loading
-    private val _image: MutableSharedFlow<String?> = MutableStateFlow("")
-    val image: Flow<String?> = _image
+    private val _image: MutableSharedFlow<PictureNasaResponse?> = MutableStateFlow(null)
+    val image: Flow<PictureNasaResponse?> = _image
     private val _error: MutableSharedFlow<String> = MutableSharedFlow()
     val error: Flow<String> = _error
     fun requestPictureOfTheDay() {
@@ -22,8 +23,7 @@ class MainViewModel(val repositiry: NasaRepository) : ViewModel() {
         viewModelScope.launch {
             _loading.emit(true)
             try {
-                val pictureNasa = repositiry.pictureOfTheDay()
-                _image.emit(pictureNasa.url)
+                _image.emit(repositiry.pictureOfTheDay())
             } catch (exc: IOException) {
                 _error.emit("Network error")
             }
