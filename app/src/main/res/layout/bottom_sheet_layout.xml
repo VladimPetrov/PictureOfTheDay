@@ -4,9 +4,9 @@
     android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f6f6fa"
+    android:background="@color/background_bottom_sheet"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="10dp"
+    app:behavior_peekHeight="@dimen/peekHeigth_bottom_sheet"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <com.google.android.material.textfield.TextInputLayout

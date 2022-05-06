@@ -2,4 +2,5 @@
 <resources>
     <dimen name="margin_size">5dp</dimen>
     <dimen name="title_text_size">24sp</dimen>
+    <dimen name="peekHeigth_bottom_sheet">10dp</dimen>
 </resources>

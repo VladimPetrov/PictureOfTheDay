@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">NASA - Картинка дня</string>
     <string name="text_search_button">ПОИСК</string>
+    <string name="text_chip_date_minus_2">Позавчерашняя</string>
+    <string name="text_chip_date_minus_1">Вчерашняя</string>
+    <string name="text_chip_date">Сегодняшняя</string>
 </resources>
