@@ -9,31 +9,31 @@
     app:behavior_peekHeight="@dimen/peekHeigth_bottom_sheet"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_context_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_size"
-        app:layout_constraintBottom_toTopOf="@+id/search_button"
+        android:gravity="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
+        android:text="@string/title_context_text"
+        app:layout_constraintBottom_toTopOf="@+id/context_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/context_text_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
-        android:text="@string/text_search_button"
+        android:gravity="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:textSize="@dimen/context_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input" />
+        app:layout_constraintTop_toBottomOf="@+id/title_context_text_view"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

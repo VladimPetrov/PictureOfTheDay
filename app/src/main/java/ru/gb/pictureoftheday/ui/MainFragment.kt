@@ -3,6 +3,7 @@ package ru.gb.pictureoftheday.ui
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import kotlinx.coroutines.flow.collect
+import com.google.android.material.textview.MaterialTextView
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.databinding.FragmentMainBinding
 import ru.gb.pictureoftheday.domain.NasaRepositoryImpl
@@ -33,6 +34,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentMainBinding.bind(view)
+
         binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
             var dateQuery = LocalDate.now()
             when (checkedId) {
@@ -43,7 +45,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
                 2 -> {
                     dateQuery = dateQuery.minusDays(2)
-
                     viewModel.requestPictureOfAnotherDay(dateQuery.toString())
                 }
                 3 -> {
@@ -67,6 +68,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 pictureNasa?.let {
                     binding.titleTextView.text = it.title
                     binding.imageView.load(it.url)
+                    val contextView: MaterialTextView? = view?.findViewById(R.id.context_text_view)
+                    contextView?.let { context ->
+                        context.text = it.explanation
+                    }
                 }
             }
         }
@@ -75,6 +80,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    }
+        //val bindingBottomSheet = bottomSheetBi
 
+
+    }
 }

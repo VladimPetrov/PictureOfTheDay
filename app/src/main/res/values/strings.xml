@@ -4,4 +4,5 @@
     <string name="text_chip_date_minus_2">Позавчерашняя</string>
     <string name="text_chip_date_minus_1">Вчерашняя</string>
     <string name="text_chip_date">Сегодняшняя</string>
+    <string name="title_context_text">Подробно</string>
 </resources>
