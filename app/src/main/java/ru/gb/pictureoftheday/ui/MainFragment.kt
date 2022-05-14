@@ -21,6 +21,7 @@ import java.time.LocalDate
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private lateinit var bottomSheetSettingBehavior: BottomSheetBehavior<ConstraintLayout>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,35 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         }
-        setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        bottomSheetBehavior = setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        bottomSheetSettingBehavior =
+            setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_setting_container))
+        binding.fabSettings.setOnClickListener {
+            when (bottomSheetSettingBehavior.state) {
+                BottomSheetBehavior.STATE_COLLAPSED -> {
+                    bottomSheetSettingBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    binding.fabBottomSheet.visibility = View.GONE
+                }
+                else -> {
+                    bottomSheetSettingBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    binding.fabBottomSheet.visibility = View.VISIBLE
+                }
+            }
+        }
+        binding.fabBottomSheet.setOnClickListener {
+            when (bottomSheetBehavior.state) {
+                BottomSheetBehavior.STATE_COLLAPSED -> {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    binding.fabBottomSheet.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_keyboard_arrow_down_24))
+                    binding.fabSettings.visibility = View.GONE
+                }
+                else -> {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    binding.fabBottomSheet.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_keyboard_arrow_up_24))
+                    binding.fabSettings.visibility = View.VISIBLE
+                }
+            }
+        }
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
             viewModel.loadind.collect {
                 binding.progress.visibility = if (it) View.VISIBLE else View.GONE
@@ -77,11 +106,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout): BottomSheetBehavior<ConstraintLayout> {
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        //val bindingBottomSheet = bottomSheetBi
-
-
+        return bottomSheetBehavior
     }
 }

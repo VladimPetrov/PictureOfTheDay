@@ -9,23 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_size"
-        app:layout_constraintBottom_toTopOf="@+id/search_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_size"
+            app:endIconDrawable="@drawable/ic_baseline_remove_red_eye_24"
+            app:endIconMode="custom"
+            app:helperText="@string/text_input_helper">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
@@ -62,22 +63,25 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 app:singleSelection="true">
+
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_chip_date_minus_2"/>
+                    android:text="@string/text_chip_date_minus_2" />
+
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_chip_date_minus_1"/>
+                    android:text="@string/text_chip_date_minus_1" />
+
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_chip_date"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:text="@string/text_chip_date" />
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
@@ -95,5 +99,29 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <include layout="@layout/bottom_sheet_layout" />
+
+    <include layout="@layout/bottom_sheet_setting" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:backgroundTint="@color/purple_500"
+        android:clickable="true"
+        app:layout_anchor="@+id/bottom_sheet_setting_container"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_bottom_sheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_500"
+        android:clickable="true"
+        app:layout_anchor="@+id/bottom_sheet_container"
+        app:layout_anchorGravity="top|start"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_up_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
