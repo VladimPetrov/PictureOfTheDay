@@ -1,9 +1,12 @@
 package ru.gb.pictureoftheday.ui
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,12 +19,14 @@ import com.google.android.material.textview.MaterialTextView
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.databinding.FragmentMainBinding
 import ru.gb.pictureoftheday.domain.NasaRepositoryImpl
+import ru.gb.pictureoftheday.domain.SharedPrefConst
 import java.time.LocalDate
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetSettingBehavior: BottomSheetBehavior<ConstraintLayout>
+    private lateinit var binding: FragmentMainBinding
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +39,48 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentMainBinding.bind(view)
+        binding = FragmentMainBinding.bind(view)
+        bottomSheetBehavior = setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        bottomSheetSettingBehavior =
+            setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_setting_container))
+        initChipGroup()
+        initFABBottoms()
+        initLifecycleOwners()
+        initRadioButton()
+    }
 
+    private fun initRadioButton() {
+        val settingRButton: RadioGroup? = view?.findViewById(R.id.setting_radio_group)
+        val numberCurrentTheme =
+            activity?.getSharedPreferences(SharedPrefConst.SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+                ?.getInt(SharedPrefConst.THEME_KEY, -1)
+        when(numberCurrentTheme) {
+            R.style.Theme_Primary -> {
+                view?.findViewById<RadioButton>(R.id.change_theme_radio_button_1)?.isChecked = true
+            }
+            R.style.Theme_Primary2 -> {
+                view?.findViewById<RadioButton>(R.id.change_theme_radio_button_2)?.isChecked = true
+            }
+        }
+        settingRButton?.setOnCheckedChangeListener { group, checkedId ->
+            val sharedPref = activity?.getSharedPreferences(
+                SharedPrefConst.SHARED_PREFS_NAME,
+                Context.MODE_PRIVATE
+            )
+            val editor = sharedPref?.edit()
+            if (view?.findViewById<RadioButton>(R.id.change_theme_radio_button_1)?.isChecked == true)
+                editor?.putInt(SharedPrefConst.THEME_KEY, R.style.Theme_Primary)
+
+            if (view?.findViewById<RadioButton>(R.id.change_theme_radio_button_2)?.isChecked == true)
+                editor?.putInt(SharedPrefConst.THEME_KEY, R.style.Theme_Primary2)
+
+            editor?.apply()
+
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun initChipGroup() {
         binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
             var dateQuery = LocalDate.now()
             when (checkedId) {
@@ -53,9 +98,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         }
-        bottomSheetBehavior = setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-        bottomSheetSettingBehavior =
-            setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_setting_container))
+    }
+
+    private fun initFABBottoms() {
         binding.fabSettings.setOnClickListener {
             when (bottomSheetSettingBehavior.state) {
                 BottomSheetBehavior.STATE_COLLAPSED -> {
@@ -82,6 +127,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         }
+    }
+
+    private fun initLifecycleOwners() {
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
             viewModel.loadind.collect {
                 binding.progress.visibility = if (it) View.VISIBLE else View.GONE
@@ -110,5 +158,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         return bottomSheetBehavior
+    }
+
+    companion object {
+        fun newInstance() = MainFragment()
     }
 }

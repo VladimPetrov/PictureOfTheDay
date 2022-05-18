@@ -7,5 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_bottom_sheet">#91EBF6</color>
+    <color name="title_background_theme_1">#85B8DF</color>
+    <color name="chip_background_color_theme_1">#2196F3</color>
+    <color name="radiobutton_tint_color_theme_1">#08DF11</color>
+    <color name="text_input_stroke_color_theme_1">#44759C</color>
+    <color name="text_input_tint_color_theme_1">#0D304C</color>
+    <color name="fab_color_theme_1">#2D3A83</color>
+    <color name="fab_tint_color_theme_1">#CDDC39</color>
+    <color name="title_background_theme_2">#8AC546</color>
+    <color name="chip_background_color_theme_2">#724CDC</color>
+    <color name="radiobutton_tint_color_theme_2">#E30B24</color>
+    <color name="text_input_stroke_color_theme_2">#E107D6</color>
+    <color name="text_input_tint_color_theme_2">#F42F72</color>
+    <color name="fab_color_theme_2">#ED6B07</color>
+    <color name="fab_tint_color_theme_2">#05177C</color>
 </resources>

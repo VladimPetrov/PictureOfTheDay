@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet_setting_container"
+    android:background="?attr/bottomSheetBG"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:behavior_hideable="true"
@@ -9,26 +10,24 @@
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <RadioGroup
+        android:id="@+id/setting_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:id="@+id/change_theme_radio_button_1"
+            style="@style/RadioButtonColorStyle"
             android:checked="true"
-            android:text="@string/radio_button_1"
-            android:textSize="@dimen/radio_button_text_size" />
+            android:text="@string/radio_button_1" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="@string/radio_button_2"
-            android:textSize="@dimen/radio_button_text_size" />
+            android:id="@+id/change_theme_radio_button_2"
+            style="@style/RadioButtonColorStyle"
+            android:text="@string/radio_button_2" />
     </RadioGroup>
 
 

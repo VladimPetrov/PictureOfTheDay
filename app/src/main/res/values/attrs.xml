@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="headerTextColor" format="reference" />
+    <attr name="bottomSheetBG" format="reference" />
+    <attr name="chipBGColor" format="reference" />
+    <attr name="textILStrokeColor" format="reference" />
+    <attr name="textILTintColor" format="reference" />
+    <attr name="fabBackgroundTint" format="reference" />
+    <attr name="fabIconColor" format="reference" />
+    <attr name="RBTintColor" format="reference" />
+</resources>
