@@ -54,7 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val numberCurrentTheme =
             activity?.getSharedPreferences(SharedPrefConst.SHARED_PREFS_NAME, Context.MODE_PRIVATE)
                 ?.getInt(SharedPrefConst.THEME_KEY, -1)
-        when(numberCurrentTheme) {
+        when (numberCurrentTheme) {
             R.style.Theme_Primary -> {
                 view?.findViewById<RadioButton>(R.id.change_theme_radio_button_1)?.isChecked = true
             }
@@ -160,7 +160,4 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         return bottomSheetBehavior
     }
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 }
