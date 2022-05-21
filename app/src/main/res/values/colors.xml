@@ -12,6 +12,8 @@
     <color name="radiobutton_tint_color_theme_1">#08DF11</color>
     <color name="text_input_stroke_color_theme_1">#44759C</color>
     <color name="text_input_tint_color_theme_1">#0D304C</color>
+    <color name="bottom_nav_background_color_theme_1">#2D41B5</color>
+    <color name="bottom_nav_icon_color_theme_1">#D0D2DD</color>
     <color name="fab_color_theme_1">#2D3A83</color>
     <color name="fab_tint_color_theme_1">#CDDC39</color>
     <color name="title_background_theme_2">#8AC546</color>
@@ -19,6 +21,8 @@
     <color name="radiobutton_tint_color_theme_2">#E30B24</color>
     <color name="text_input_stroke_color_theme_2">#E107D6</color>
     <color name="text_input_tint_color_theme_2">#F42F72</color>
+    <color name="bottom_nav_background_color_theme_2">#57CA5B</color>
+    <color name="bottom_nav_icon_color_theme_2">#01051C</color>
     <color name="fab_color_theme_2">#ED6B07</color>
     <color name="fab_tint_color_theme_2">#05177C</color>
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.domain.SharedPrefConst
+import ru.gb.pictureoftheday.ui.pictureoftheday.FragmentPictureOfTheDay
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,5 +18,11 @@ class MainActivity : AppCompatActivity() {
             setTheme(numberCurrentTheme)
         }
         setContentView(R.layout.activity_main)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, FragmentPictureOfTheDay())
+                .commit()
+        }
     }
 }

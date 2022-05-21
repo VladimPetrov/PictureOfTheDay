@@ -154,10 +154,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
+
+
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout): BottomSheetBehavior<ConstraintLayout> {
         val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         return bottomSheetBehavior
-    }
-
-}
+    }}
