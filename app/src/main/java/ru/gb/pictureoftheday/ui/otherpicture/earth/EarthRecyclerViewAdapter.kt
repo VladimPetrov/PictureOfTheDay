@@ -1,4 +1,4 @@
-package ru.gb.pictureoftheday.ui.marsroverpicture
+package ru.gb.pictureoftheday.ui.otherpicture.earth
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.android.material.textview.MaterialTextView
 import ru.gb.pictureoftheday.R
-import ru.gb.pictureoftheday.api.MarsRoverResponse
-import ru.gb.pictureoftheday.api.Photo
+import ru.gb.pictureoftheday.api.EarthPhoto
 
-class MarsRecyclerViewAdapter : RecyclerView.Adapter<MarsRecyclerViewAdapter.MainViewHolder>() {
-    private var imageData: List<Photo> = listOf()
+class EarthRecyclerViewAdapter : RecyclerView.Adapter<EarthRecyclerViewAdapter.MainViewHolder>() {
+    private var imageData: List<EarthPhoto> = listOf()
 
-    fun setData(data: List<Photo>) {
+    fun setData(data: List<EarthPhoto>) {
         imageData = data
         notifyDataSetChanged()
     }
@@ -22,28 +21,30 @@ class MarsRecyclerViewAdapter : RecyclerView.Adapter<MarsRecyclerViewAdapter.Mai
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarsRecyclerViewAdapter.MainViewHolder {
+    ): EarthRecyclerViewAdapter.MainViewHolder {
         return MainViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_photo, parent, false) as View
         )
     }
 
-    override fun onBindViewHolder(holder: MarsRecyclerViewAdapter.MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EarthRecyclerViewAdapter.MainViewHolder, position: Int) {
         holder.bind(imageData.get(position))
     }
 
     override fun getItemCount(): Int = imageData.count()
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(photo: Photo) {
+        fun bind(photo: EarthPhoto) {
             itemView.apply {
 
                 context?.let {
                     this.findViewById<MaterialTextView>(R.id.item_photo_date_text_view).text =
-                        photo.earthDate
+                        photo.date
                     this.findViewById<MaterialTextView>(R.id.item_photo_title_text_view).text =
-                        "${photo.id} ${photo.rover.name}: Camera - ${photo.camera.fullName}"
-                    this.findViewById<ImageView>(R.id.item_photo_image_view).load(photo.imgSrc)
+                        photo.caption
+                    this.findViewById<ImageView>(R.id.item_photo_image_view).load(
+                        "https://epic.gsfc.nasa.gov/archive/enhanced/2021/05/10/png/" + photo.image + ".png"
+                    )
                 }
             }
         }

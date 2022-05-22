@@ -22,4 +22,7 @@ interface NasaApi {
         @Query("sol") sol: Int = 1000,
         @Query("api_key") key: String = BuildConfig.API_KEY
     ): MarsRoverResponse
+
+    @GET("api/enhanced/date/2021-05-10")
+    suspend fun pictureOfEath(): List<EarthPhoto>
 }

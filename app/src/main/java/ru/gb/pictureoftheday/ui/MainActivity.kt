@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.domain.SharedPrefConst
+import ru.gb.pictureoftheday.ui.otherpicture.TabsFragment
 import ru.gb.pictureoftheday.ui.pictureoftheday.FragmentPictureOfTheDay
 
 class MainActivity : AppCompatActivity() {
