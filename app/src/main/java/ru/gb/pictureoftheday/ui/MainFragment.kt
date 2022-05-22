@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -23,7 +22,7 @@ import ru.gb.pictureoftheday.domain.SharedPrefConst
 import java.time.LocalDate
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
+    private val viewModel: PictureOfTheDayViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetSettingBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding: FragmentMainBinding
@@ -141,7 +140,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
-            viewModel.image.collect { pictureNasa ->
+            viewModel.imageOfDay.collect { pictureNasa ->
                 pictureNasa?.let {
                     binding.titleTextView.text = it.title
                     binding.imageView.load(it.url)

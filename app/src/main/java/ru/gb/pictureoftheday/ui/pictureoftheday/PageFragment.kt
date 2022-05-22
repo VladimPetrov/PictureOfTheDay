@@ -14,16 +14,15 @@ import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textview.MaterialTextView
 import ru.gb.pictureoftheday.R
-import ru.gb.pictureoftheday.databinding.FragmentMainBinding
 import ru.gb.pictureoftheday.databinding.PageFragmentBinding
 import ru.gb.pictureoftheday.domain.NasaRepositoryImpl
-import ru.gb.pictureoftheday.ui.MainViewModel
+import ru.gb.pictureoftheday.ui.PictureOfTheDayViewModel
 import ru.gb.pictureoftheday.ui.MainViewModelFactory
 import java.time.LocalDate
 
 
 class PageFragment : Fragment(R.layout.page_fragment) {
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
+    private val viewModel: PictureOfTheDayViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding: PageFragmentBinding
     private lateinit var dateQuery: String
@@ -74,7 +73,7 @@ class PageFragment : Fragment(R.layout.page_fragment) {
             }
         }
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
-            viewModel.image.collect { pictureNasa ->
+            viewModel.imageOfDay.collect { pictureNasa ->
                 pictureNasa?.let {
                     binding.pageFragmentTitleTextView.text = it.title
                     binding.pageFragmentImageView.load(it.url)

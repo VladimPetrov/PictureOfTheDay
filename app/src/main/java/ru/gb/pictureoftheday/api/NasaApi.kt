@@ -1,22 +1,25 @@
 package ru.gb.pictureoftheday.api
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.gb.pictureoftheday.BuildConfig
-import java.time.LocalDate
 
 interface NasaApi {
 
     @GET("planetary/apod")
     suspend fun pictureOfTheDay(
         @Query("api_key") key: String = BuildConfig.API_KEY
-    ): PictureNasaResponse
+    ): APODNasaResponse
 
     @GET("planetary/apod")
     suspend fun pictureOfAnotherDay(
         @Query("date") date: String,
         @Query("api_key") key: String = BuildConfig.API_KEY
-    ): PictureNasaResponse
+    ): APODNasaResponse
+
+    @GET("mars-photos/api/v1/rovers/Opportunity/photos")
+    suspend fun pictureOfMarsRover(
+        @Query("sol") sol: Int = 1000,
+        @Query("api_key") key: String = BuildConfig.API_KEY
+    ): MarsRoverResponse
 }

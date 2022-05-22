@@ -5,6 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 import ru.gb.pictureoftheday.R
 
 class FragmentPictureOfTheDay : Fragment(R.layout.fragment_picture_of_the_day) {
@@ -13,6 +15,8 @@ class FragmentPictureOfTheDay : Fragment(R.layout.fragment_picture_of_the_day) {
         super.onViewCreated(view, savedInstanceState)
         val pager: ViewPager2 = view.findViewById(R.id.fragment_view_pager)
         pager.adapter = PagerAdapter(this)
+        val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.spring_dots_indicator)
+        dotsIndicator.attachTo(pager)
     }
 
     class PagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
