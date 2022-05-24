@@ -17,9 +17,10 @@ interface NasaApi {
         @Query("api_key") key: String = BuildConfig.API_KEY
     ): APODNasaResponse
 
-    @GET("mars-photos/api/v1/rovers/Opportunity/photos")
+    @GET("mars-photos/api/v1/rovers/Curiosity/photos")
     suspend fun pictureOfMarsRover(
         @Query("sol") sol: Int = 1000,
+        @Query("page") page: Int = 1,
         @Query("api_key") key: String = BuildConfig.API_KEY
     ): MarsRoverResponse
 

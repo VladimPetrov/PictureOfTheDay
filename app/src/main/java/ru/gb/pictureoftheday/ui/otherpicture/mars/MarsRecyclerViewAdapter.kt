@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.api.Photo
@@ -43,7 +44,11 @@ class MarsRecyclerViewAdapter : RecyclerView.Adapter<MarsRecyclerViewAdapter.Mai
                         photo.earthDate
                     this.findViewById<MaterialTextView>(R.id.item_photo_title_text_view).text =
                         "${photo.id} ${photo.rover.name}: Camera - ${photo.camera.fullName}"
-                    this.findViewById<ImageView>(R.id.item_photo_image_view).load(photo.imgSrc)
+                    Glide.with(it)
+                        .load(photo.imgSrc.replace("http", "https", true))
+                        .override(200, 300)
+                        .into(this.findViewById<ImageView>(R.id.item_photo_image_view))
+
                 }
             }
         }
