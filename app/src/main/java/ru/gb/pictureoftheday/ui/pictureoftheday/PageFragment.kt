@@ -96,6 +96,7 @@ class PageFragment : Fragment(R.layout.page_fragment) {
     private fun dayOnThisPage(numberInstance: Int?): String {
         var dateQuery = LocalDate.now()
         when (numberInstance) {
+            0 -> dateQuery = dateQuery.minusDays(1)
             1 -> dateQuery = dateQuery.minusDays(1)
 
             2 -> dateQuery = dateQuery.minusDays(2)
