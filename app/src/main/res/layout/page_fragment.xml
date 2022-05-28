@@ -60,8 +60,6 @@
 
     <include layout="@layout/bottom_sheet_layout" />
 
-    <include layout="@layout/bottom_sheet_setting" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/page_fragment_fab_bottom_sheet"
         style="@style/FAB"
