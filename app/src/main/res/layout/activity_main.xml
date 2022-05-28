@@ -18,6 +18,7 @@
         android:id="@+id/fragment_fab_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FAB"
         app:srcCompat="@drawable/ic_baseline_settings_24"
         app:layout_constraintBottom_toTopOf="@id/main_bottom_nav_view"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -25,28 +26,34 @@
         android:id="@+id/fragment_fab_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FAB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircle="@id/fragment_fab_main"
-        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleRadius="@dimen/fab_circle_radius"
         app:layout_constraintCircleAngle="0"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fragment_fab_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FAB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircle="@id/fragment_fab_main"
-        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleRadius="@dimen/fab_circle_radius"
         app:layout_constraintCircleAngle="270"/>
+
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fragment_fab_diagonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FAB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircle="@id/fragment_fab_main"
-        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleRadius="@dimen/fab_circle_radius"
         app:layout_constraintCircleAngle="315"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_nav_view"
