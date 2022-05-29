@@ -9,6 +9,10 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.transition.ChangeBounds
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,8 +82,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFAB() {
-        if (isOpenFab) {
-            binding.activityFabMain.setOnClickListener {
+        binding.activityFabMain.setOnClickListener {
+            if (isOpenFab) {
                 when (bottomSheetBehavior.state) {
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -88,13 +92,26 @@ class MainActivity : AppCompatActivity() {
                         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                     }
                 }
+            }else {
+                openFabs()
             }
-        } else openFab()
+        }
     }
 
-    private fun openFab() {
+    private fun openFabs() {
         isOpenFab = isOpenFab.not()
+        val animSet = TransitionSet()
+            .addTransition(Fade())
+        TransitionManager.beginDelayedTransition(binding.activityMainRootLayout,animSet)
 
+        val visibleStatus = if (isOpenFab) View.VISIBLE else View.GONE
+
+        (binding.activityFabTop.layoutParams as ConstraintLayout.LayoutParams).circleRadius = resources.getDimension(R.dimen.fab_circle_radius).toInt()
+        (binding.activityFabLeft.layoutParams as ConstraintLayout.LayoutParams).circleRadius = resources.getDimension(R.dimen.fab_circle_radius).toInt()
+        (binding.activityFabDiagonal.layoutParams as ConstraintLayout.LayoutParams).circleRadius = resources.getDimension(R.dimen.fab_circle_radius).toInt()
+        binding.activityFabTop.visibility = visibleStatus
+        binding.activityFabLeft.visibility = visibleStatus
+        binding.activityFabDiagonal.visibility = visibleStatus
     }
 
     private fun initBottomNavigationView() {
