@@ -8,4 +8,7 @@
     <string name="text_input_helper">строка поиска</string>
     <string name="radio_button_1">Класическая</string>
     <string name="radio_button_2">Цветная</string>
+    <string name="item_pictuture_of_the_day">Картинка дня</string>
+    <string name="item_other_picture">Другие картинки</string>
+    <string name="item_addition_info">Доп. информация</string>
 </resources>

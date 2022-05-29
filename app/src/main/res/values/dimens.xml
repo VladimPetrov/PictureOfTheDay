@@ -3,6 +3,7 @@
     <dimen name="margin_size">5dp</dimen>
     <dimen name="title_medium_text_size">24sp</dimen>
     <dimen name="title_small_text_size">16sp</dimen>
+    <dimen name="title_very_small_text_size">10sp</dimen>
     <dimen name="peekHeigth_bottom_sheet">30dp</dimen>
     <dimen name="context_text_size">12sp</dimen>
     <dimen name="radio_button_text_size">18sp</dimen>

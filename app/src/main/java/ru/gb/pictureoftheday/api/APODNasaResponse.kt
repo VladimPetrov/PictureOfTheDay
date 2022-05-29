@@ -3,7 +3,7 @@ package ru.gb.pictureoftheday.api
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class PictureNasaResponse(
+data class APODNasaResponse(
     @SerializedName("copyright")
     val copyright: String,
 
