@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/headerTextColor</item>
+    </style>
+    <style name="Title.Medium">
+        <item name="android:textSize">@dimen/title_medium_text_size</item>
+    </style>
+    <style name="Title.Small">
+        <item name="android:textSize">@dimen/title_small_text_size</item>
+    </style>
+    <style name="ContextText">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/headerTextColor</item>
+        <item name="android:textSize">@dimen/context_text_size</item>
+    </style>
+    <style name="FAB">
+        <item name="android:backgroundTint">?attr/fabBackgroundTint</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="ChipColor" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="tint">?attr/fabIconColor</item>
+        <item name="chipBackgroundColor">?attr/chipBGColor</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="RadioButtonColorStyle">
+        <item name="android:gravity">left</item>
+        <item name="buttonTint">?attr/RBTintColor</item>
+        <item name="android:textSize">@dimen/radio_button_text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="TextILColor" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_margin">@dimen/margin_size</item>
+        <item name="endIconTint">?attr/textILTintColor</item>
+
+    </style>
+</resources>
