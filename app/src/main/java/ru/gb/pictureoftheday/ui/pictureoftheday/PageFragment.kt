@@ -3,13 +3,20 @@ package ru.gb.pictureoftheday.ui.pictureoftheday
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textview.MaterialTextView
@@ -22,10 +29,15 @@ import java.time.LocalDate
 
 
 class PageFragment : Fragment(R.layout.page_fragment) {
-    private val viewModel: PictureOfTheDayViewModel by viewModels { MainViewModelFactory(NasaRepositoryImpl()) }
+    private val viewModel: PictureOfTheDayViewModel by viewModels {
+        MainViewModelFactory(
+            NasaRepositoryImpl()
+        )
+    }
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding: PageFragmentBinding
     private lateinit var dateQuery: String
+    private var isFullScreen = false
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +53,34 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         binding = PageFragmentBinding.bind(view)
         binding.pageFragmentDateTextView.text = dateQuery
         bottomSheetBehavior = setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-
+        initAnimateImage()
         initLifecycleOwners()
         initFABBottom()
+    }
+
+    private fun initAnimateImage() {
+        isFullScreen = isFullScreen.not()
+        binding.pageFragmentImageView.setOnClickListener {
+            TransitionManager.beginDelayedTransition(
+                binding.pageFragmentRootLayout,
+                TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(ChangeImageTransform())
+            )
+            val dimensionWidth =
+                if (isFullScreen) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
+
+            val dimensionHeight =
+                if (isFullScreen) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
+
+            val scaleType =
+                if (isFullScreen) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+            binding.pageFragmentImageView.updateLayoutParams {
+                width = dimensionWidth
+                height = dimensionHeight
+            }
+            binding.pageFragmentImageView.scaleType = scaleType
+        }
     }
 
     private fun initFABBottom() {
