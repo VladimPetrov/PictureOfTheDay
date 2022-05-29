@@ -1,5 +1,6 @@
 package ru.gb.pictureoftheday.ui
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var numberCurrentTheme: Int = -1
+    private var isOpenFab = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,16 +78,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFAB() {
-        binding.activityFabMain.setOnClickListener {
-            when (bottomSheetBehavior.state) {
-                BottomSheetBehavior.STATE_COLLAPSED -> {
-                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                }
-                else -> {
-                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        if (isOpenFab) {
+            binding.activityFabMain.setOnClickListener {
+                when (bottomSheetBehavior.state) {
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    }
+                    else -> {
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    }
                 }
             }
-        }
+        } else openFab()
+    }
+
+    private fun openFab() {
+        isOpenFab = isOpenFab.not()
+
     }
 
     private fun initBottomNavigationView() {
