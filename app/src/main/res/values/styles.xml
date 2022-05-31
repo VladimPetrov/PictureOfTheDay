@@ -11,6 +11,11 @@
     <style name="Title.Small">
         <item name="android:textSize">@dimen/title_small_text_size</item>
     </style>
+    <style name="Title.VerySmall">
+        <item name="android:textStyle">italic</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">@dimen/title_very_small_text_size</item>
+    </style>
     <style name="ContextText">
         <item name="android:gravity">center</item>
         <item name="android:textColor">?attr/headerTextColor</item>
