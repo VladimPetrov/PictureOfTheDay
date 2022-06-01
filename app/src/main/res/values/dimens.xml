@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_size">5dp</dimen>
+    <dimen name="title_high_text_size">32sp</dimen>
     <dimen name="title_medium_text_size">24sp</dimen>
     <dimen name="title_small_text_size">16sp</dimen>
     <dimen name="title_very_small_text_size">10sp</dimen>
