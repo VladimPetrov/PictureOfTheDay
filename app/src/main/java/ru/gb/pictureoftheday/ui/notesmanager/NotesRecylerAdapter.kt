@@ -13,17 +13,18 @@ import ru.gb.pictureoftheday.domain.NotesEntity
 import ru.gb.pictureoftheday.visiblyIf
 import java.util.*
 
-class NotesRecylerAdapter (
-    val itemRemoved:((pos:Int) -> Unit)? = null
-        ): ListAdapter<NotesEntity,NotesRecylerAdapter.NotesViewHolder>(object : DiffUtil.ItemCallback<NotesEntity>() {
-    override fun areItemsTheSame(oldItem: NotesEntity, newItem: NotesEntity): Boolean = oldItem.id == newItem.id
+class NotesRecylerAdapter(
+    val itemRemoved: ((pos: Int) -> Unit)? = null,
+    val itemAdd: ((pos: Int) -> Unit)? = null,
+    val itemMove: ((from: Int, to: Int) -> Unit)? = null
+) : ListAdapter<NotesEntity, NotesRecylerAdapter.NotesViewHolder>(object :
+    DiffUtil.ItemCallback<NotesEntity>() {
+    override fun areItemsTheSame(oldItem: NotesEntity, newItem: NotesEntity): Boolean =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: NotesEntity, newItem: NotesEntity): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: NotesEntity, newItem: NotesEntity): Boolean =
+        oldItem == newItem
 }) {
-
-    fun itemsMoved(from: Int, to: Int) {
-        Collections.swap(currentList, from, to)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder =
         NotesViewHolder(
@@ -54,27 +55,20 @@ class NotesRecylerAdapter (
         init {
 
             buttonDelete.setOnClickListener {
-               itemRemoved?.invoke(adapterPosition)
+                itemRemoved?.invoke(adapterPosition)
             }
             buttonAdd.setOnClickListener {
-                currentList.add(
-                    adapterPosition,
-                    NotesEntity(title = "Новая заметка", text = "Новая заметка")
-                )
-                notifyItemInserted(adapterPosition)
+                itemAdd?.invoke(adapterPosition)
             }
             buttonUp.setOnClickListener {
-                Collections.swap(currentList, adapterPosition, adapterPosition - 1)
-                buttonUp.visiblyIf { adapterPosition - 1 != 0 }
-                notifyItemMoved(adapterPosition, adapterPosition - 1)
-                notifyItemChanged(adapterPosition)
-                //notifyItemChanged(adapterPosition - 1)
+                buttonUp.visiblyIf { adapterPosition != 1 }
+                buttonDown.visiblyIf { true }
+                itemMove?.invoke(adapterPosition, adapterPosition - 1)
             }
             buttonDown.setOnClickListener {
-                Collections.swap(currentList, adapterPosition, adapterPosition + 1)
-                buttonDown.visiblyIf { adapterPosition + 1 != currentList.size - 1 }
-                notifyItemMoved(adapterPosition, adapterPosition + 1)
-                notifyItemChanged(adapterPosition + 1)
+                buttonDown.visiblyIf { adapterPosition != currentList.size - 2 }
+                buttonUp.visiblyIf { true }
+                itemMove?.invoke(adapterPosition, adapterPosition + 1)
             }
         }
     }

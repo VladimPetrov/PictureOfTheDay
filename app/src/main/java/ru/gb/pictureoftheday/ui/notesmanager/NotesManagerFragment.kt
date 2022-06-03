@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.databinding.FragmentNotesManagerBinding
+import ru.gb.pictureoftheday.domain.NotesEntity
 
 class NotesManagerFragment : Fragment(R.layout.fragment_notes_manager) {
     private lateinit var binding: FragmentNotesManagerBinding
@@ -18,18 +19,19 @@ class NotesManagerFragment : Fragment(R.layout.fragment_notes_manager) {
         adapter = NotesRecylerAdapter({
             repository.deleteNote(it)
             adapter.submitList(ArrayList(repository.getData()))
+        }, {
+            repository.addNote(it, NotesEntity(title = "Новая заметка", text = "Новая заметка"))
+            adapter.submitList(ArrayList(repository.getData()))
+        }, { from, to ->
+            repository.moveNote(from,to)
+            adapter.submitList(ArrayList(repository.getData()))
         })
         binding.fragmentNotesManagerRecycler.adapter = adapter
         adapter.submitList(repository.getData())
         ItemTouchHelper(NotesTouchHelperCallBack({
             adapter.itemRemoved?.invoke(it)
-        }, { from, to ->
-            with(adapter) {
-                itemsMoved(from, to)
-                notifyItemChanged(from)
-                notifyItemChanged(to)
-            }
-        })).attachToRecyclerView(binding.fragmentNotesManagerRecycler)
+        }, { from, to -> adapter.itemMove?.invoke(from, to) }
+        )).attachToRecyclerView(binding.fragmentNotesManagerRecycler)
     }
 
 }
