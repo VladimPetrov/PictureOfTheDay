@@ -5,6 +5,7 @@
     <attr name="chipBGColor" format="reference" />
     <attr name="textILStrokeColor" format="reference" />
     <attr name="textILTintColor" format="reference" />
+    <attr name="titleBackground" format="reference" />
     <attr name="bottomNavBackgroundColor" format="reference" />
     <attr name="bottomNavIconColor" format="reference" />
     <attr name="fabBackgroundTint" format="reference" />

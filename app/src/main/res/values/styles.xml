@@ -11,6 +11,9 @@
     <style name="Title.Small">
         <item name="android:textSize">@dimen/title_small_text_size</item>
     </style>
+    <style name="Title.High">
+        <item name="android:textSize">@dimen/title_high_text_size</item>
+    </style>
     <style name="Title.VerySmall">
         <item name="android:textStyle">italic</item>
         <item name="android:gravity">left</item>

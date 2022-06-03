@@ -12,8 +12,8 @@
         android:title="@string/item_other_picture"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/item_3_addition_info"
-        android:icon="@drawable/ic_baseline_view_timeline_24"
-        android:title="@string/item_addition_info"
+        android:id="@+id/item_3_notes_manager"
+        android:icon="@drawable/ic_baseline_event_note_24"
+        android:title="@string/notes_manager_header"
         app:showAsAction="ifRoom"/>
 </menu>

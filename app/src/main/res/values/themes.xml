@@ -22,6 +22,7 @@
         <item name="bottomNavBackgroundColor">@color/bottom_nav_background_color_theme_1</item>
         <item name="bottomNavIconColor">@color/bottom_nav_icon_color_theme_1</item>
         <item name="dotIndicateColor">@color/dot_indicate_color_theme_1</item>
+        <item name="titleBackground">@color/title_background_theme_1</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="Theme.Primary2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -46,6 +47,7 @@
         <item name="bottomNavBackgroundColor">@color/bottom_nav_background_color_theme_2</item>
         <item name="bottomNavIconColor">@color/bottom_nav_icon_color_theme_2</item>
         <item name="dotIndicateColor">@color/dot_indicate_color_theme_2</item>
+        <item name="titleBackground">@color/title_background_theme_2</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

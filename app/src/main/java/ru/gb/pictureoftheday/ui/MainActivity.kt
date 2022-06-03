@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.gb.pictureoftheday.R
 import ru.gb.pictureoftheday.databinding.ActivityMainBinding
 import ru.gb.pictureoftheday.domain.SharedPrefConst
+import ru.gb.pictureoftheday.ui.notesmanager.NotesManagerFragment
 import ru.gb.pictureoftheday.ui.otherpicture.TabsFragment
 import ru.gb.pictureoftheday.ui.pictureoftheday.FragmentPictureOfTheDay
 
@@ -119,6 +120,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.item_1_picture_of_the_day -> FragmentPictureOfTheDay()
                 R.id.item_2_other_picture -> TabsFragment()
+                R.id.item_3_notes_manager -> NotesManagerFragment()
                 else -> null
             }?.also { fragment ->
                 supportFragmentManager
