@@ -8,4 +8,6 @@
     <dimen name="context_text_size">12sp</dimen>
     <dimen name="radio_button_text_size">18sp</dimen>
     <dimen name="fab_margin">20dp</dimen>
+    <dimen name="fab_circle_radius">80dp</dimen>
+    <dimen name="small_size_image">70dp</dimen>
 </resources>
