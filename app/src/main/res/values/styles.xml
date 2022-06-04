@@ -4,6 +4,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">?attr/headerTextColor</item>
+        <item name="android:fontFamily">@font/sweet_mavka</item>
     </style>
     <style name="Title.Medium">
         <item name="android:textSize">@dimen/title_medium_text_size</item>
@@ -23,6 +24,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">?attr/headerTextColor</item>
         <item name="android:textSize">@dimen/context_text_size</item>
+        <item name="android:fontFamily">@font/sweet_mavka</item>
     </style>
     <style name="FAB">
         <item name="android:backgroundTint">?attr/fabBackgroundTint</item>
