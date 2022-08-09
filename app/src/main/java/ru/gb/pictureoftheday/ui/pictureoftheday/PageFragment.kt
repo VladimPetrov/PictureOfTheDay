@@ -21,6 +21,7 @@ import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textview.MaterialTextView
 import ru.gb.pictureoftheday.R
+import ru.gb.pictureoftheday.applySpanStyle
 import ru.gb.pictureoftheday.databinding.PageFragmentBinding
 import ru.gb.pictureoftheday.domain.NasaRepositoryImpl
 import ru.gb.pictureoftheday.ui.PictureOfTheDayViewModel
@@ -116,7 +117,7 @@ class PageFragment : Fragment(R.layout.page_fragment) {
                     binding.pageFragmentImageView.load(it.url)
                     val contextView: MaterialTextView? = view?.findViewById(R.id.context_text_view)
                     contextView?.let { context ->
-                        context.text = it.explanation
+                        context.text = applySpanStyle(it.explanation)
                     }
                 }
             }
@@ -133,7 +134,7 @@ class PageFragment : Fragment(R.layout.page_fragment) {
     private fun dayOnThisPage(numberInstance: Int?): String {
         var dateQuery = LocalDate.now()
         when (numberInstance) {
-            0 -> dateQuery = dateQuery.minusDays(1)
+            0 -> dateQuery = dateQuery.minusDays(0)
             1 -> dateQuery = dateQuery.minusDays(1)
 
             2 -> dateQuery = dateQuery.minusDays(2)
